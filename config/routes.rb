@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+
+  resources :users do 
+    resources :boards
+    resources :topics
+    resources :comments
+  end
+
+  resources :topics do 
+    resources :comments
+  end
+
+  resources :boards do 
+    resources :topics
+  end
+
+  resources :sessions
+  root :to => 'users#index'
+
+  #get '/search' => "home#results" ///////////<-uncomment me when the time is right. 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,7 @@
+<%= form_for @topic do |f| %>
+<%=f.label :title %>
+<%=f.text_field :title %>
+<%=f.label :body %>
+<%=f.text_field :body,:size => 150 %> <%#expanding the body field using a soluiion found here: http://bit.ly/1wcRkGa %>
+<%=f.submit @button %>
+<%end%>

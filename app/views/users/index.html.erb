@@ -1,0 +1,12 @@
+<h1>Users:</h1>
+<ul>
+<%@users.each do |i| %>
+	<li>User: <%=i.username%> | 
+	<%=link_to "view", user_path(i)%> | 
+	<%=link_to "edit", edit_user_path(i)%> | 
+	<%=link_to "delete", user_path(i), method: "delete", data:{ confirm: "What did #{i.username} ever do to you?"}%> | 
+	</li>
+<%end%>
+</ul>
+
+<%=link_to "create new user", new_user_path(@user) %>

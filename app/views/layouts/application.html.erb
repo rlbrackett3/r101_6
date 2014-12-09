@@ -8,7 +8,21 @@
 </head>
 <body>
 
+<%=flash[:notice] if flash[:notice]%>
+<%=flash[:alert] if flash[:alert]%>
+
+<% unless current_page?(root_path)%>
+	<small><%=link_to "« Return to Home page", root_path%></small><br/>
+<%end%>
+<%=link_to "View Topics", topics_path%>
+<%=link_to "View Users", users_path%>
+<%=link_to "View Boards", boards_path%>
+
+<br/>
 <%= yield %>
+<br/>
+<br/>
+<small>Params: <%=params%></small>
 
 </body>
 </html>

@@ -3,12 +3,13 @@
 		<%@topics.each do |i| %>
 		
 		<li><%=i.title%> | 
-			by <%=link_to " #{User.find(i.user_id).username}",new_topic_path(@topic)%> |
-			<%=link_to " View ",topic_path(i)%> | 
-			<%=link_to " Edit ",topic_path(i)%> | 
-			<%=link_to " Delete ",topic_path(i)%> | 
+			
+				<%=link_to "View",topic_path(i)%> | 
+				<%=link_to "Edit",edit_topic_path(i)%> | 
+				<%=link_to "Delete",topic_path(i), method: "delete", data:{ confirm: "Are you sure?"}%> | 
 
-			Created at <%=i.created_at%>
+			Created at <%=i.created_at%> |
+			by 	<%=link_to "#{User.find(i.user_id).username}",new_topic_path(@topic)%>
 		</li>
 		
 		<%end%>

@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<%=flash[:notice] if flash[:notice]%>
-<%=flash[:alert] if flash[:alert]%>
+<%=flash[:notice] if flash[:notice]%><%=flash[:alert] if flash[:alert]%><br/>
 
 <% unless current_page?(root_path)%>
 	<small><%=link_to "« Return to Home page", root_path%></small><br/>

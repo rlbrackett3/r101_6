@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   end
 
   resources :sessions
-  root :to => 'users#index'
+  root :to => 'sessions#index'
+
+ get '/' => "sessions#index",as: 'home'
+
+  get '/search' => "home#results"
 
   #get '/search' => "home#results" ///////////<-uncomment me when the time is right. 
 

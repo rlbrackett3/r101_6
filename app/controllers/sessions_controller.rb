@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 	def create
 		@user = User.where(email: params[:email]).first
 		if @user && @user.password 
-			flash[:notice] = "Login successfully"
+			flash[:notice] = "Login successful"
 			session[:user_id] = @user.id
 			redirect_to users_path
 		else

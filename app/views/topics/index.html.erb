@@ -9,9 +9,10 @@
 				<%=link_to "Delete",topic_path(i), method: "delete", data:{ confirm: "Are you sure?"}%> | 
 
 			Created at <%=i.created_at%> |
-			by 	<%=link_to "#{User.find(i.user_id).username}",new_topic_path(@topic)%>
+			by 	<%=link_to "#{User.where(id:i.user_id).first.username}",user_path(i.user_id)%>
 		</li>
 		
 		<%end%>
 	</ul>
+
 <%=link_to "create new topic",new_topic_path(@topic)%>

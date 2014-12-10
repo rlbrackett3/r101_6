@@ -3,13 +3,14 @@ class TopicsController < ApplicationController
 	###Create
 	def new
 		@topic = Topic.new
+		
 	end
 	
 	def create
 		@topic = Topic.new(topic_params)
 		if @topic.save(topic_params)
 			flash[:notice] = "topic has been created"
-			User.find(user_params) << @topic
+			User.find(session[:user_id]).topics << @topic
 			redirect_to root_path
 		else
 			flash[:alert] = "Problem!"
@@ -20,6 +21,10 @@ class TopicsController < ApplicationController
 	###Read
 	def index
 		@topics = Topic.all
+	end
+
+	def show
+		@topic = Topic.find(params[:id])
 	end
 
 	###Update
@@ -51,6 +56,8 @@ class TopicsController < ApplicationController
 	end
 	
 	###Strong_Params
+	private
+
 	def topic_params
 		params.require(:topic).permit(:title,:body,:user_id)
 	end

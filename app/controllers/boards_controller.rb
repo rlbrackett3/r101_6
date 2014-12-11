@@ -6,8 +6,8 @@ class BoardsController < ApplicationController
 
 	def show 
 		@board = Board.find(params[:id])
-		@new_topics = Topic.all
-		@board_topics = @board.topics
+		@new_topics = Topic.all # lists all topics 
+		@board_topics = @board.topics #lists topics that belong to board
 
 	end
 
@@ -18,7 +18,7 @@ class BoardsController < ApplicationController
 
 	def update
 		@board = Board.find(params[:id])
-		@topic = Topic.find(params[:topic])
+		@topic = Topic.find(params[:topic]) #param is passes from controllers#
 
 
 		if @board.update(board_params)

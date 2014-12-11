@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
 		if @topic.save(topic_params)
 			flash[:notice] = "topic has been created"
 			User.find(session[:user_id]).topics << @topic
-			redirect_to root_path
+			redirect_to topics_path
 		else
 			flash[:alert] = "Problem!"
 			redirect_to new_topic_path
@@ -25,6 +25,7 @@ class TopicsController < ApplicationController
 
 	def show
 		@topic = Topic.find(params[:id])
+		@comments  = @topic.comments
 	end
 
 	###Update

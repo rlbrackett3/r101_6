@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207004012) do
+ActiveRecord::Schema.define(version: 20141210221359) do
 
   create_table "boards", force: true do |t|
     t.string   "name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20141207004012) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "boards_topics", id: false, force: true do |t|
+    t.integer "board_id", null: false
+    t.integer "topic_id", null: false
+  end
+
+  add_index "boards_topics", ["board_id", "topic_id"], name: "index_boards_topics_on_board_id_and_topic_id"
+  add_index "boards_topics", ["topic_id", "board_id"], name: "index_boards_topics_on_topic_id_and_board_id"
 
   create_table "comments", force: true do |t|
     t.text     "body"

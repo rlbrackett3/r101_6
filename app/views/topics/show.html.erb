@@ -1,0 +1,20 @@
+<h1><%=@topic.title%></h1>
+<p><%=@topic.body%></p>
+<hr/>
+<strong>Comments:</strong>
+<ul>
+<%@comments.each do |i| %>
+<li><%=i.body%> | by <%=link_to "#{User.find(i.user_id).username}",user_path(i.user_id)%> | posted: 
+
+	<% if i.created_at > Time.now.beginning_of_day %><%#awesome solution for time.now from here http://bit.ly/1yQA7oq%>
+	    <%="#{time_ago_in_words(i.created_at)} ago"%> 
+	<% else %>
+	    <%= i.created_at.strftime("%b %d, %Y") %>
+	<% end %>
+
+</li>
+<%end%>
+</ul>
+
+
+<%=link_to "Leave a reply", new_topic_comment_path(@topic) %>

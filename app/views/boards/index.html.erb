@@ -1,0 +1,7 @@
+<h1>Boards:</h1>
+<ul>
+<%@boards.each do |i| %>
+	<li><%=i.name%> |	 <%=link_to "View topics in #{i.name.capitalize}", board_path(i)%>
+	</li>
+<%end%>
+</ul>

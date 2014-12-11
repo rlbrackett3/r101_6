@@ -22,9 +22,7 @@
 <%=link_to "View Boards", boards_path%>
 <% unless session[:user_id] == nil %>
 
-	<%unless current_page?(controller: 'users', action: 'index')%><%# Got his from ApiDock http://bit.ly/1yqwlOw! %>
-	<%=link_to "Return to Home page", users_path %>
-	<%end%>
+
 
 <%=form_tag "/search", controller: "home",method: "get",controller: "home"  do %>
 <%= radio_button_tag(:query_type, "topic") %>

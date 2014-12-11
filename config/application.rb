@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module R1016
   class Application < Rails::Application
+    config.time_zone = 'Eastern Time (US & Canada)' # seeting to time zone to EST for "created_at"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

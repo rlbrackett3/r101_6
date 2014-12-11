@@ -6,18 +6,34 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :topics do 
-    resources :comments
+  resources :topics do
+    resources :comments, only: [:index, :new, :create]
   end
+
+  resources :comments, only: [:show, :edit, :update, :destroy]
+
+  get '/add-topic' => "boards#add"
 
   resources :boards do 
     resources :topics
   end
 
-  resources :sessions
+  resources :topics do 
+    resources :boards
+  end
+  
+
+
+
+
+
+  #resources :comments #weird
+  
+
+  resources :sessions,only: [:new, :create, :destroy]
   root :to => 'sessions#index'
 
- get '/' => "sessions#index",as: 'home'
+  get '/' => "sessions#index",as: 'home'
 
   get '/search' => "home#results"
 

@@ -1,0 +1,18 @@
+<h1><%=@board.name%></h1>
+<p><%=@board.description%></p>
+
+Topics in this board:
+
+<ul>
+	<%@board_topics.each do |i|%>
+		<li><%=i.title%> <%=link_to "View", board_topic_path(@board,i)%></li>
+	<%end%>
+</ul>
+
+Add topics to this board:
+
+<ul>
+	<%@new_topics.each do |i|%>
+		<li><%=i.title%> <%=link_to "Add", board_topic_path(@board,i), :method=> :put%></li>
+	<%end%>
+</ul>

@@ -16,14 +16,14 @@ class SessionsController < ApplicationController
 			redirect_to users_path
 		else
 			flash[:alert] = "Problem"
-			redirect_to sessions_path
+			redirect_to home_path
 		end
 	end
 
 	def destroy
 		session[:user_id] = nil
 		flash[:alert] = "Logout successful!"
-		redirect_to sessions_path
+		redirect_to home_path
 	end
 end
 

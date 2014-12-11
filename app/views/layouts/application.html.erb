@@ -8,30 +8,29 @@
 </head>
 <body>
 
-<%unless current_page?(controller: 'users', action: 'index')%><%# Got his from ApiDock http://bit.ly/1yqwlOw! %>
-	<small><%=link_to "« Return to Home page", root_path%></small><br/>
-<%end%>
-
-<%=flash[:notice] if flash[:notice]%><%=flash[:alert] if flash[:alert]%><br/>
-
-<% unless current_page?(root_path)%>
-	
-<%end%>
+<%unless current_page?(home_path)%><%# Got his from ApiDock http://bit.ly/1yqwlOw! %>
+<small><%=link_to "« Return to Home page", root_path%></small><br/>
 <%=link_to "View Topics", topics_path%>
 <%=link_to "View Users", users_path%>
 <%=link_to "View Boards", boards_path%>
+
+<%end%>
+<br/>
+<%=flash[:notice] if flash[:notice]%><%=flash[:alert] if flash[:alert]%><br/>
+
 <% unless session[:user_id] == nil %>
 
 
 
-<%=form_tag "/search", controller: "home",method: "get",controller: "home"  do %>
+<%=form_tag "/search", controller: "home",method: "get"  do %>
 <%= radio_button_tag(:query_type, "topic") %>
 <%= label_tag(:query_article, "topic query") %>
 <%= radio_button_tag(:query_type, "user") %>
 <%= label_tag(:query_user, "user query") %>
-<%=label_tag(:query_type, "search:") %>
+<%= radio_button_tag(:query_type, "board") %>
+<%= label_tag(:query_user, "board query") %>
 <%=text_field_tag(:query) %>
-<%=submit_tag "Submit", method: "view" %>
+<%=submit_tag "Submit", redirect_to: 'home#results'  %>
 <% end %>
 
 <%=render"layouts/login"%>

@@ -32,6 +32,7 @@ class TopicsController < ApplicationController
 
 	def edit
 		@topic = Topic.find(params[:id])
+
 	end
 
 	def update
@@ -60,7 +61,7 @@ class TopicsController < ApplicationController
 	private
 
 	def topic_params
-		params.require(:topic).permit(:title,:body,:user_id)
+		params.require(:topic).permit(:title,:body,:user_id,:topic)
 	end
 
 end

@@ -1,0 +1,24 @@
+
+
+<%if params[:query_type] == "user" %> 
+	<h1><%=@users.count%> user(s) found</h1>
+		<ul>
+			<%@users.each do |i|%>
+				<li><%=i.fname%> <%=i.lname%> | <%=link_to("view user",user_path(i))%></li>
+			<%end%>
+		</ul>
+<%elsif params[:query_type] == "topic"%>
+	<h1><%=@topics.count%> topic(s) found</h1>
+		<ul>
+			<%@topics.each do |i|%>
+				<li><%=i.title%> <%=i.body%> | <%=link_to "view topic", topic_path(i)%></li>
+			<%end%>
+		</ul>
+<%elsif%>
+	<h1><%=@boards.count%> boards(s) found</h1>
+		<ul>
+			<%@boards.each do |i|%>
+				<li><%=i.name%>| <%=link_to "view board", board_path(i)%></li>
+			<%end%>
+		</ul>		
+<%end%>

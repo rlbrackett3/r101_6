@@ -9,15 +9,19 @@ class BoardsController < ApplicationController
 		@new_topics = Topic.all
 		@board_topics = @board.topics
 	end
+	def edit
+		@board = Board.find(params[:id])
+	end
 
 	def update
-		@board = Board.find(params[:board_id])
-		@topic = Topic.find(params[:id])		
+		@board = Board.find(params[:id])
+		@topic = Topic.find(params[:topic_id])
+
 
 		if @board.update(board_params)
 			flash[:notice] = "Added!"
-			@board.topics << @topic
-			redirect_to boards_path
+			#@board.topics << @topic
+			redirect_to home_path
 		else
 			flash[:alert] = "Problem!"
 			redirect_to boards_path

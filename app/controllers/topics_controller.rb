@@ -36,6 +36,7 @@ class TopicsController < ApplicationController
 	end
 
 	def update
+		@board = Board.find(params[:board_id])
 		@topic = Topic.find(params[:id])
 		if @topic.update(topic_params)
 			flash[:notice] = "topic has been updated"

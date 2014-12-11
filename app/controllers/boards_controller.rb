@@ -8,7 +8,9 @@ class BoardsController < ApplicationController
 		@board = Board.find(params[:id])
 		@new_topics = Topic.all
 		@board_topics = @board.topics
+		@topic = Topic.find(params[:id])
 	end
+
 	def edit
 		@board = Board.find(params[:id])
 	end
@@ -32,7 +34,7 @@ class BoardsController < ApplicationController
 	private
 
 	def board_params
-		params.require(:board).permit(:name,:description)
+		params.require(:board).permit(:name,:description )
 	end
 
 

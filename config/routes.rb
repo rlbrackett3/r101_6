@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 
   get '/add-topic' => "boards#add"
 
-  # resources :boards do 
-  #   resources :topics
-  # end
+   resources :boards do 
+     resources :topics
+   end
 
   resources :boards
   resources :topics

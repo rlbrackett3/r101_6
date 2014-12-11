@@ -12,7 +12,7 @@ Topics in this board:
 Add topics to this board:
 <ul>
 	<%@new_topics.each do |i|%>
-		<%=link_to "Add", board_path(id: @board, topic_id: i.id), :method=> :patch%>
+		<%=link_to "Add", board_topic_path(@board,i), :method=> :put%>
 	<%end%>
 </ul>
 

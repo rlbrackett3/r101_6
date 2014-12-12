@@ -16,3 +16,30 @@ Add topics to this board:
 	<%end%>
 </ul>
 
+<!-- Delete the stuff above once you are comfortable with these -->
+<h3>Topics in this board:</h3>
+<ul>
+  <% @board.topics.each do |topic| %>
+    <li>
+    <%= topic.title %> &nbsp;|&nbsp;
+    <%= link_to "View", topic_path(topic) %>&nbsp;|&nbsp; <!-- minor adjustment here -->
+    <!-- The link posts to the remove_topic_board_path that usines the remove_topic method on the boards controller -->
+    <!-- to fix teh strong parameters issue topic_id must be included in the :board params, see controller for how to access these -->
+    <%= link_to "Remove Topic", remove_topic_board_path(board: {topic_id: topic.id }) %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Available Topics</h4>
+<ul>
+  <% @new_topics.each do |topic| %>
+    <% unless @board.topics.include?(topic) %>
+      <li>
+        <%= topic.title %>&nbsp;|&nbsp;
+         <!-- The link posts to the add_topic_board_path that usines the add_topic method on the boards controller -->
+    	<!-- to fix teh strong parameters issue topic_id must be included in the :board params, see controller for how to access these -->
+        <%= link_to "Add Topic", add_topic_board_path(board: {topic_id: topic.id }) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

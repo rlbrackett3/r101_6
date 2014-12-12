@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
    resources :boards do 
      resources :topics
+     # Add/remove topic to/from post path
+     # these are new routes to two new controller actions rather than trying to use update as that shold really be for updating a board through a form
+     member do
+      match 'add_topic', via: [:get, :post]
+      match 'remove_topic', via: [:get, :post]
+     end
    end
 
   resources :boards

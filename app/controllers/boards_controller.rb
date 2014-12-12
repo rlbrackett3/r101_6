@@ -17,19 +17,49 @@ class BoardsController < ApplicationController
 	end
 
 	def update
+		# Updated this to just be for using the board edit form
 		@board = Board.find(params[:id])
-		@topic = Topic.find(params[:topic]) #param is passes from controllers#
-
 
 		if @board.update(board_params)
-			flash[:notice] = "Added!"
-			@board.topics << @topic
-			redirect_to home_path
+			flash[:notice] = "Board updated successfully."
+			redirect_to @board
 		else
 			flash[:alert] = "Problem!"
-			redirect_to boards_path
+			redirect_to edit_board_path(@board)
 		end
 
+	end
+	
+	
+	#Here are two new methods for add and remove topic associations
+	def add_topic
+		@board = Board.find(params[:id])
+		@topic = Topic.find(params[:board][:topic_id])
+
+		@board.topics << @topic
+
+		if @board.update(board_params)
+			flash[:notice] = "Topic Added!"
+			redirect_to board_path(@board)
+		else
+			flash[:alert] = "Problem!"
+			redirect_to board_path(@board)
+		end
+	end
+
+	def remove_topic
+		@board = Board.find(params[:id])
+		@topic = @board.topics.find(params[:board][:topic_id])
+
+		@board.topics.delete(@topic)
+
+		if @board.update(board_params)
+			flash[:notice] = "Topic Removed!"
+			redirect_to board_path(@board)
+		else
+			flash[:alert] = "Problem!"
+			redirect_to board_path(@board)
+		end
 	end
 
 	private
